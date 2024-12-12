@@ -154,6 +154,9 @@
                     userNum: 1,
                 }
             },
+            created() {
+                this.fetchVersion();
+            },
             methods: {
                 setUserName(newVal) {
                     this.userName = newVal;
@@ -163,6 +166,18 @@
                 },
                 setUserNum(newVal) {
                     this.userNum = newVal;
+                },
+                fetchVersion() {
+                    fetch('https://github.com/ScoopInstaller/Extras/raw/refs/heads/master/bucket/mobaxterm.json')
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data && data.version) {
+                                this.versionName = data.version;
+                            }
+                        })
+                        .catch(() => {
+                            console.error("Failed to load version, using default version.");
+                        });
                 },
                 generate() {
                     if (!this.userName) {
