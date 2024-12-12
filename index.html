@@ -168,7 +168,7 @@
                     this.userNum = newVal;
                 },
                 fetchVersion() {
-                    fetch('https://github.com/ScoopInstaller/Extras/raw/refs/heads/master/bucket/mobaxterm.json')
+                    fetch('https://raw.githubusercontent.com/scoopinstaller/extras/refs/heads/master/bucket/mobaxterm.json')
                         .then(response => response.json())
                         .then(data => {
                             if (data && data.version) {
